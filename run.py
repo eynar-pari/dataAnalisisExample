@@ -27,7 +27,8 @@ if use_example_file:
     st.write(df_expected)
     st.markdown("### Counted Data preview")
     st.write(df_counted)
-      
+else:    
+    st.write("seems there is no data")  
 
 # remove duplicates
 #df_counted = df_counted.drop_duplicates("RFID")
