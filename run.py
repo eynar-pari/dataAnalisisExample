@@ -44,13 +44,3 @@ if uploaded_file_expected is not None and  uploaded_file_counted is not None:
     make_choice = st.sidebar.selectbox('Select your RFID:', df_B)
     if removeDuplicate:
         st.write('Results:', df_B)
-    
-S
-else:
-    st.write("there is no data") 
-      
-
-
-
-
-
