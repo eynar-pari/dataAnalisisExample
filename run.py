@@ -2,12 +2,16 @@ import pandas as pd
 import streamlit as st
 
 st.set_page_config(
-    page_title="Bootcam Mojix", page_icon="📊", initial_sidebar_state="expanded"
+    page_title="Bootcam Mojix", page_icon="📊", initial_sidebar_state="expanded",layout="wide",
 )
+
+st.title('Bootcam MOJIX - Eynar Pari')
+st.header('Select your CSV or use the default (just for testing) ')
 
 uploaded_file_expected = st.file_uploader("Expected Choose expected file", type=".csv")
 uploaded_file_counted = st.file_uploader("Choose a counted file", type=".csv")
 
+st.markdown("----")
 df_expected = None
 df_counted = None
 
