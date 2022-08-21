@@ -19,11 +19,13 @@ if use_default_file:
     df_expected = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Expected.csv", encoding="latin-1", dtype=str)
     df_counted = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Counted.csv", encoding="latin-1", dtype=str)
 
-
+start_button = st.button("Start") 
     
-if uploaded_file_expected and uploaded_file_counted :
-    df_expected = pd.read_csv(uploaded_file_expected, encoding="latin-1", dtype=str)
-    df_counted = pd.read_csv(uploaded_file_counted, encoding="latin-1", dtype=str)
+if start_button :
+    if uploaded_file_expected :
+        df_expected = pd.read_csv(uploaded_file_expected, encoding="latin-1", dtype=str)
+    if uploaded_file_counted:
+        df_counted = pd.read_csv(uploaded_file_counted, encoding="latin-1", dtype=str)
 
     # remove duplicates
     df_counted = df_counted.drop_duplicates("RFID")
