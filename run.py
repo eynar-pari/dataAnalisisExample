@@ -18,17 +18,20 @@ if use_example_file:
 
     if uploaded_file_expected is not None:
         df_expected = pd.read_csv(uploaded_file_expected)
-
+    else:
+        st.write("please upload the expected file")  
+    
 
     if uploaded_file_counted is not None:
         df_counted = pd.read_csv(uploaded_file_counted)
-    
+    else:    
+        st.write("please upload the counted file") 
+
     st.markdown("### Expected Data preview")
     st.write(df_expected)
     st.markdown("### Counted Data preview")
     st.write(df_counted)
-else:    
-    st.write("seems there is no data")  
+
 
 # remove duplicates
 #df_counted = df_counted.drop_duplicates("RFID")
