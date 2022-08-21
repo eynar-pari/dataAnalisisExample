@@ -30,8 +30,8 @@ if use_example_file:
       
 
 # remove duplicates
-df_counted = df_counted.drop_duplicates("RFID")
-df_B = df_counted.groupby("Retail_Product_SKU").count()[["RFID"]].reset_index().rename(columns={"RFID":"Retail_CCQTY"})
+#df_counted = df_counted.drop_duplicates("RFID")
+#df_B = df_counted.groupby("Retail_Product_SKU").count()[["RFID"]].reset_index().rename(columns={"RFID":"Retail_CCQTY"})
 
-st.write(df_B)
+#st.write(df_B)
 
