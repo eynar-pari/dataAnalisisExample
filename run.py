@@ -12,7 +12,7 @@ df_expected = None
 df_counted = None
 
 use_default_file = st.checkbox(
-    "Use  the the url as example instead to upload file\n https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Expected.csv\n"+"https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Counted.csv", False, help="default"
+    "Use the data used in the class 04 ", False, help="default"
 )
 
 if use_default_file:
@@ -22,12 +22,9 @@ if use_default_file:
 
     
 if uploaded_file_expected and uploaded_file_counted :
-    df_expected = pd.read_csv(uploaded_file_expected)
-    df_counted = pd.read_csv(uploaded_file_counted)
+    df_expected = pd.read_csv(uploaded_file_expected, encoding="latin-1", dtype=str)
+    df_counted = pd.read_csv(uploaded_file_counted, encoding="latin-1", dtype=str)
 
-    removeDuplicate = st.checkbox(
-    "Show data without duplicate", False, help="be sure to upload the files"
-    )
     # remove duplicates
     df_counted = df_counted.drop_duplicates("RFID")
     df_B = df_counted.groupby("Retail_Product_SKU").count()[["RFID"]].reset_index().rename(columns={"RFID":"Retail_CCQTY"})
