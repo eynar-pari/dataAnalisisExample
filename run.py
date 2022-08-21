@@ -5,20 +5,26 @@ st.set_page_config(
     page_title="Bootcam Mojix", page_icon="📊", initial_sidebar_state="expanded"
 )
 
-uploaded_file_expected = st.file_uploader("Expected Choose expected file")
-uploaded_file_counted = st.file_uploader("Choose a counted file")
+uploaded_file_expected = st.file_uploader("Expected Choose expected file", type=".csv")
+uploaded_file_counted = st.file_uploader("Choose a counted file", type=".csv")
 
-#if uploaded_file_expected is not None:
-#    df_expected = pd.read_csv(uploaded_file_expected)
-#if uploaded_file_counted is not None:    
-#    df_counted = pd.read_csv(uploaded_file_counted)
+df_expected = None
+df_counted = None
 
-df_expected = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Expected.csv", encoding="latin-1", dtype=str)
-df_counted = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Counted.csv", encoding="latin-1", dtype=str)
+use_default_file = st.checkbox(
+    "Use  the the url as example instead to upload file\n https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Expected.csv\n"+"https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Counted.csv", False, help="default"
+)
 
-#if uploaded_file_expected is not None and  uploaded_file_counted is not None:
+if use_default_file:
+    df_expected = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Expected.csv", encoding="latin-1", dtype=str)
+    df_counted = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Counted.csv", encoding="latin-1", dtype=str)
+
+
     
-if 1 == 1:
+if uploaded_file_expected and uploaded_file_counted :
+    df_expected = pd.read_csv(uploaded_file_expected)
+    df_counted = pd.read_csv(uploaded_file_counted)
+
     removeDuplicate = st.checkbox(
     "Show data without duplicate", False, help="be sure to upload the files"
     )
@@ -26,21 +32,20 @@ if 1 == 1:
     df_counted = df_counted.drop_duplicates("RFID")
     df_B = df_counted.groupby("Retail_Product_SKU").count()[["RFID"]].reset_index().rename(columns={"RFID":"Retail_CCQTY"})
     make_choice = st.sidebar.selectbox('Select your RFID:', df_B)
-#    if removeDuplicate:
-#        st.write('Results:', df_B)
+
     st.write('Results:', df_B)
     # aggregate
     my_cols_selected = ["Retail_Product_Color",
-"Retail_Product_Level1",
-"Retail_Product_Level1Name",
-"Retail_Product_Level2Name",
-"Retail_Product_Level3Name",
-"Retail_Product_Level4Name",
-"Retail_Product_Name",
-"Retail_Product_SKU",
-"Retail_Product_Size",
-"Retail_Product_Style",
-"Retail_SOHQTY"]
+                        "Retail_Product_Level1",
+                        "Retail_Product_Level1Name",
+                        "Retail_Product_Level2Name",
+                        "Retail_Product_Level3Name",
+                        "Retail_Product_Level4Name",
+                        "Retail_Product_Name",
+                        "Retail_Product_SKU",
+                        "Retail_Product_Size",
+                        "Retail_Product_Style",
+                        "Retail_SOHQTY"]
 
     df_A = df_expected[my_cols_selected]    
     df_discrepancy = pd.merge(df_A, df_B, how="outer", left_on="Retail_Product_SKU", right_on="Retail_Product_SKU", indicator=True)
