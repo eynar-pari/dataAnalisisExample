@@ -1,12 +1,9 @@
+import pandas as pd
 import streamlit as st
-import pandas as pd 
 
+st.title("Hello world!")
 
-st.title('CSV Reader')
-file = st.file_uploader('upload a csv',type="csv")
-st.write(df)
-
-
-#
-#  to execute
-# py -m streamlit run hello.py
+uploaded_file = st.file_uploader("Choose a file")
+if uploaded_file is not None:
+  df = pd.read_csv(uploaded_file)
+  st.write(dataframe)
