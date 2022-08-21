@@ -36,7 +36,7 @@ if start_button :
     df_B = df_counted.groupby("Retail_Product_SKU").count()[["RFID"]].reset_index().rename(columns={"RFID":"Retail_CCQTY"})
     make_choice = st.sidebar.selectbox('Select your RFID:', df_B)
 
-    st.write('Results:', df_B)
+    st.write('Result without Duplicates:', df_B)
     # aggregate
     my_cols_selected = ["Retail_Product_Color",
                         "Retail_Product_Level1",
@@ -59,4 +59,4 @@ if start_button :
     df_discrepancy.loc[df_discrepancy["Diff"]<0, "Unders"] = df_discrepancy["Diff"] * (-1)
     df_discrepancy["Unders"] = df_discrepancy["Unders"].fillna(0).astype(int)
     df_final = df_discrepancy.groupby("Retail_Product_Level1Name").sum()
-    st.write('final:', df_final)
+    st.write('Agregate Final:', df_final)
