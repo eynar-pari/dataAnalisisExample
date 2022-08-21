@@ -60,3 +60,4 @@ if start_button :
     df_discrepancy["Unders"] = df_discrepancy["Unders"].fillna(0).astype(int)
     df_final = df_discrepancy.groupby("Retail_Product_Level1Name").sum()
     st.write('Agregate Final:', df_final)
+    st.bar_chart(df_discrepancy)
