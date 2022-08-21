@@ -8,12 +8,17 @@ st.set_page_config(
 uploaded_file_expected = st.file_uploader("Expected Choose expected file")
 uploaded_file_counted = st.file_uploader("Choose a counted file")
 
-if uploaded_file_expected is not None:
-    df_expected = pd.read_csv(uploaded_file_expected)
-if uploaded_file_counted is not None:    
-    df_counted = pd.read_csv(uploaded_file_counted)
+#if uploaded_file_expected is not None:
+#    df_expected = pd.read_csv(uploaded_file_expected)
+#if uploaded_file_counted is not None:    
+#    df_counted = pd.read_csv(uploaded_file_counted)
 
-if uploaded_file_expected is not None and  uploaded_file_counted is not None:
+df_expected = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Expected.csv", encoding="latin-1", dtype=str)
+df_counted = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-bucket/analytics/bootcamp_2_0/Bootcamp_DataAnalysis_Counted.csv", encoding="latin-1", dtype=str)
+
+#if uploaded_file_expected is not None and  uploaded_file_counted is not None:
+    
+if true:
     removeDuplicate = st.checkbox(
     "Show data without duplicate", False, help="be sure to upload the files"
     )
