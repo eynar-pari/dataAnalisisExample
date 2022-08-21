@@ -24,9 +24,9 @@ if use_example_file:
         df_counted = pd.read_csv(uploaded_file_counted)
     
     st.markdown("### Expected Data preview")
-    st.write(expected)
+    st.write(df_expected)
     st.markdown("### Counted Data preview")
-    st.write(counted)
+    st.write(df_counted)
       
 
 # remove duplicates
