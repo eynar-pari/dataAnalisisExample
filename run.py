@@ -33,12 +33,17 @@ if use_example_file:
 
     
     
+if uploaded_file_expected is not None and  uploaded_file_counted is not None:
+    df_counted = df_counted.drop_duplicates("RFID")
+    df_B = df_counted.groupby("Retail_Product_SKU").count()[["RFID"]].reset_index().rename(columns={"RFID":"Retail_CCQTY"})
+    make_choice = st.sidebar.selectbox('Select your RFID:', df_B)
+    st.write('Results:', df_B)
 
+else:
+    st.write("there is no data") 
+      
 
 
 # remove duplicates
-#df_counted = df_counted.drop_duplicates("RFID")
-#df_B = df_counted.groupby("Retail_Product_SKU").count()[["RFID"]].reset_index().rename(columns={"RFID":"Retail_CCQTY"})
 
-#st.write(df_B)
 
