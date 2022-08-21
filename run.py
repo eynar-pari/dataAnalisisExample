@@ -18,7 +18,7 @@ df_counted = pd.read_csv("https://storage.googleapis.com/mojix-devops-wildfire-b
 
 #if uploaded_file_expected is not None and  uploaded_file_counted is not None:
     
-if true:
+if 1 == 1:
     removeDuplicate = st.checkbox(
     "Show data without duplicate", False, help="be sure to upload the files"
     )
